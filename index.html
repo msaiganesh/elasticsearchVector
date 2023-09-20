@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vector Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div id="search-container">
+        <img id="google-logo" src="{{ url_for('static', filename='google-logo.png') }}" alt="Google">
+        <form method="POST" id="search-form">
+            <input type="text" name="query_text" id="query_text" required>
+            <button type="submit" id="search-button">
+                <img id="search-icon" src="{{ url_for('static', filename='search-icon.png') }}" alt="Search">
+            </button>
+        </form>
+    </div>
+
+    {% if query_text %}
+    <div id="results-container">
+        <h2>Results for: {{ query_text }}</h2>
+        <ul>
+            {% for result in results %}
+            <li>ID: {{ result._source.id }}, Text: {{ result._source.text }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
