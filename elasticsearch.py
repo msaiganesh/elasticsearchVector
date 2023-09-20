@@ -3,7 +3,7 @@ from elasticsearch import Elasticsearch
 from sentence_transformers import SentenceTransformer
 import pandas as pd
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 # Connect to Elasticsearch
 es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
